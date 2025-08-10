@@ -9,7 +9,11 @@ const Message = require('./models/Message');
 
 const port = 5000;
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://whatsapp-frontend-five-phi.vercel.app',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGO_URI)
