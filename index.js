@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.log(err));
 
 // API routes
-app.get('/conversations', async (req, res) => {
+app.get('/api/conversations', async (req, res) => {
   const conversations = await Message.aggregate([
     {
       $group: {
@@ -36,12 +36,12 @@ app.get('/conversations', async (req, res) => {
   res.json(conversations);
 });
 
-app.get('/conversations/:wa_id', async (req, res) => {
+app.get('/api/conversations/:wa_id', async (req, res) => {
   const messages = await Message.find({ wa_id: req.params.wa_id }).sort({ timestamp: 1 });
   res.json(messages);
 });
 
-app.post('/messages', async (req, res) => {
+app.post('/api/messages', async (req, res) => {
   const newMsg = new Message({
     wa_id: req.body.wa_id,
     name: req.body.name,
