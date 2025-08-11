@@ -7,7 +7,7 @@ const { Server } = require('socket.io');
 const http = require('http');
 const Message = require('./models/Message');
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors({
   origin: 'https://whatsapp-frontend-five-phi.vercel.app',
